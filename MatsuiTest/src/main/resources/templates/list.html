@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/list.css">
+	<title>Document</title>
+</head>
+
+<body>
+	<h1>一覧</h1>
+	<table class="list_item">
+		<thead>
+			<tr>
+				<th>ユーザー名</th>
+				<th>Eメールアドレス</th>
+				<th>生年月日</th>
+				<th>備考</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="entry : ${list}" th:object="${entry}">
+				<td th:text="*{user_name}"></td>
+				<td th:text="*{e_mail}"></td>
+				<td th:text="*{#dates.format(birthday, 'yyyy/MM/dd')}"></td>
+				<td th:text="*{comments}"></td>
+				<td><button type="button" class="Form-Btn1">
+						<a th:href="@{/editDelete/{user_id}(user_id=*{user_id})}">編集</a></button></td>
+			</tr>
+	</table>
+	<div>
+		<button type="button" class="bottun1"><a th:href="entry">戻る</a></button>
+	</div>
+</body>
+
+</html>

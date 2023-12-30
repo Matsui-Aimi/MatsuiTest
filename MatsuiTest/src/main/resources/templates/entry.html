@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- css を読み込む -->
+	<link th:href="@{/css/entry.css}" rel="styleSheet">
+	<!--  <form id="form" method="POST" th:object="${entryRequest}" th:action="@{/entry}">-->
+	<title>ユーザー登録</title>
+</head>
+
+<body>
+	<div class="Form">
+		<h1>ユーザー登録</h1>
+		<form th:action="@{/entry/add}" th:object="${entryRequest}" method="post">
+			<div th:if="${validationError}" th:each="error : ${validationError}"></div>
+
+
+			<div class="Form-Item">
+				<p class="Form-Item-Label">
+					<span class="Form-Item-Label-Required">必須</span>氏名
+				</p>
+				<input type="text" th:field="*{user_name}" class="Form-Item-Input" placeholder="例）山田 太郎">
+			</div>
+			<div th:errors="*{user_name}" td style="color: red;"></div>
+
+			<div class="Form-Item">
+				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>メールアドレス</p>
+				<input type="text" th:field="*{e_mail}" class="Form-Item-Input" placeholder="例）yamada0000@XX.00.yy">
+			</div>
+			<div th:errors="*{e_mail}" td style="color: red;"></div>
+
+			<div class="Form-Item">
+				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>生年月日</p>
+				<input type="date" th:field="*{birthday}" Status id="date" class="Form-Item-Input">
+			</div>
+			<div th:errors="*{birthday}" td style="color: red;"></div>
+
+			<div class="Form-Item">
+				<p class="Form-Item-Label isMsg">備考</p>
+				<textarea class="Form-Item-Textarea" th:field="*{comments}"></textarea>
+			</div>
+
+
+			<button type="submit" class="button1">登録</button>
+			<button type="button" class="button2"><a th:href="@{/list}">戻る</a></button>
+		</form>
+	</div>
+</body>
+
+</html>

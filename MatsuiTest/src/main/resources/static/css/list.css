@@ -1,0 +1,24 @@
+.list_item {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-spacing:10px 20px;
+    table-layout:fixed;
+   }
+
+   .list_item th{
+    padding: 3px 3px;
+    border-bottom: solid 4px #040c0a;
+    color: black;
+    justify-content: space-around;
+   }
+
+   .list_item td {
+    border-top: solid 1px black;
+   }
+
+   .button1 {
+    background: #a0a6a5;
+    color: #fff;
+  }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../../css/editDelete.css">
+	<title>ユーザ編集・削除</title>
+</head>
+
+<body>
+	<h1 style="text-align:center">ユーザ編集・削除</h1>
+	<form th:action="@{/editDelete/update/{user_id}(user_id=*{user_id})}" th:object="${editDeleteRequest}" method="post">
+		<div class="Form">
+			<div th:if="${validationError}" th:each="error : ${validationError}"></div>
+
+			<div th:errors="*{user_name}" td style="color: red;"></div>
+			<div th:errors="*{e_mail}" td style="color: red;"></div>
+			<div th:errors="*{birthday}" td style="color: red;"></div>
+
+			<div class="Form-Item">
+				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>名前</p>
+				<input type="text" class="Form-Item-Input" th:field="*{user_name}" placeholder="例）山田 太郎">
+			</div>
+
+
+			<div class="Form-Item">
+				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>メールアドレス</p>
+				<input type="email" class="Form-Item-Input" th:field="*{e_mail}" placeholder="例）yamada0000@XX.00.yy">
+			</div>
+
+			<div class="Form-Item">
+				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>生年月日</p>
+				<input type="date" class="Form-Item-Input" th:field="*{birthday}">
+			</div>
+
+			<div class="Form-Item">
+				<p class="Form-Item-Label isMsg">備考</p>
+				<textarea class="Form-Item-Textarea" th:field="*{comments}"></textarea>
+			</div>
+
+			<div class="Buttons">
+				<button type="submit" class="Form-Btn">編集</button>
+				<button type="button" class="Form-Btn-Delete">
+					<a th:href="@{/Delete/{user_id}(user_id=*{user_id})}">削除</a></button>
+				<button type="button" class="Form-Btn-Back"><a th:href="@{/list}">戻る</a></button>
+				</button>
+			</div>
+
+		</div>
+	</form>
+</body>
